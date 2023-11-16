@@ -1,5 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-const store = configureStore();
+import userInfoReducer from "./features/userinfo/UserInfoSlice";
+
+const store = configureStore({
+  reducer: {
+    userInfo: userInfoReducer,
+  },
+});
 
 export default store;
