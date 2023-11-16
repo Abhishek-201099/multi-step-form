@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+/*
+--- 01 TYPOGRAPHY SYSTEM
+
+-Font Sizes (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+-Font Weights:
+Default : 400
+medium:500
+semi-bold:600
+bold:700
+
+-Line Heights:
+Default : 1
+Small:1.05
+medium: 1.2
+large: 1.8
+Paragraph default : 1.6
+
+--- 02 COLORS
+
+### Primary
+
+- Marine blue: hsl(213, 96%, 18%)
+- Purplish blue: hsl(243, 100%, 62%)
+- Pastel blue: hsl(228, 100%, 84%)
+- Light blue: hsl(206, 94%, 87%)
+- Strawberry red: hsl(354, 84%, 57%)
+
+### Neutral
+
+- Cool gray: hsl(231, 11%, 63%)
+- Light gray: hsl(229, 24%, 87%)
+- Magnolia: hsl(217, 100%, 97%)
+- Alabaster: hsl(231, 100%, 99%)
+- White: hsl(0, 0%, 100%)
+
+--- 03 SHADOWS 
+
+--- 04 BORDER-RADIUS
+
+--- 05 WHITESPACE
+
+-Spacing System (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+*/
+
+:root {
+  --color-red: hsl(354, 84%, 57%);
+
+  --color-blue-1: hsl(213, 96%, 18%);
+  --color-blue-2: hsl(243, 100%, 62%);
+  --color-blue-3: hsl(228, 100%, 84%);
+  --color-blue-4: hsl(206, 94%, 87%);
+
+  --color-white-1: hsl(0, 0%, 100%);
+  --color-white-2: hsl(231, 100%, 99%);
+  --color-white-3: hsl(217, 100%, 97%);
+
+  --color-grey-1: hsl(229, 24%, 87%);
+  --color-grey-2: hsl(231, 11%, 63%);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: "Ubuntu", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+}
+
+/* CONTAINER */
+
+.container {
+  background-color: var(--color-blue-4);
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* INNER CONTAINER */
+.inner-container {
+  width: 100rem;
+  background-color: var(--color-white-1);
+  padding: 1rem 1rem;
+  border-radius: 11px;
+
+  display: flex;
+  align-items: center;
+}
+
+/* SIDE NAV */
+.nav-sidebar {
+  width: 30%;
+  background-image: url("/public/bg-sidebar-desktop.svg");
+  background-size: cover;
+  padding: 6rem 3rem;
+}
+
+.step-container {
+  width: 80%;
+
+  display: flex;
+  gap: 2rem;
+}
+
+.step-container:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.step-number a {
+  text-decoration: none;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-white-1);
+  color: var(--color-white-1);
+  font-size: 2.4rem;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s;
+}
+
+.step-number a.active {
+  background-color: var(--color-blue-4);
+  color: #666;
+  border: none;
+}
+
+.step-details {
+  text-transform: uppercase;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.step-details p:first-child {
+  font-size: 1.2rem;
+  color: var(--color-grey-1);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.step-details p:last-child {
+  letter-spacing: 0.6px;
+  font-size: 1.8rem;
+  color: var(--color-white-2);
+}
