@@ -1,7 +1,12 @@
-import { useState } from "react";
+// import { useState } from "react";
 
-export default function PlanList({ plans, planType }) {
-  const [selectedPlan, setSelectedPlan] = useState(plans.at(0));
+export default function PlanList({
+  plans,
+  planType,
+  selectedPlan,
+  setSelectedPlan,
+}) {
+  // const [selectedPlan, setSelectedPlan] = useState(plans.at(0));
 
   return (
     <div className="plans-list">
@@ -15,7 +20,7 @@ export default function PlanList({ plans, planType }) {
             onClick={() => setSelectedPlan(plan)}
           >
             <img
-              src={`./public/icon-${plan.type}.svg`}
+              src={`/icon-${plan.type.toLowerCase()}.svg`}
               alt="plan icon"
               className="plan-icon"
             />

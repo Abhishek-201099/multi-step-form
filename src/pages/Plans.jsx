@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import PlanList from "../features/Plans/PlanList";
 import PlanToggle from "../features/Plans/PlanToggle";
 import NavBtns from "../ui/NavBtns";
+import { useDispatch } from "react-redux";
+import { updateSelectedPlan } from "../features/Plans/PlanSlice";
 
 const plans = [
   {
@@ -33,7 +35,22 @@ const plans = [
 
 export default function Plans() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [planType, setPlanType] = useState("monthly");
+  const [selectedPlan, setSelectedPlan] = useState(plans.at(0));
+
+  function handlePlanData() {
+    let planData;
+    if (planType === "monthly")
+      planData = { type: planType, planPrice: selectedPlan.monthlyPrice };
+
+    if (planType === "yearly")
+      planData = { type: planType, planPrice: selectedPlan.yearly.price };
+
+    dispatch(updateSelectedPlan(planData));
+
+    navigate("/addons");
+  }
 
   return (
     <div className="plans-container">
@@ -42,15 +59,18 @@ export default function Plans() {
         You have the option of monthly or yearly billing.
       </p>
 
-      <PlanList plans={plans} planType={planType} />
+      <PlanList
+        plans={plans}
+        planType={planType}
+        selectedPlan={selectedPlan}
+        setSelectedPlan={setSelectedPlan}
+      />
 
       <PlanToggle setPlanType={setPlanType} />
 
       <NavBtns
         handleBack={() => navigate("/userinfo")}
-        handleNext={() => {
-          navigate("/addons");
-        }}
+        handleNext={() => handlePlanData()}
       />
     </div>
   );

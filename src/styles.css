@@ -113,7 +113,7 @@ body {
 /* SIDE NAV */
 .nav-sidebar {
   width: 30%;
-  background-image: url("/public/bg-sidebar-desktop.svg");
+  background-image: url("/bg-sidebar-desktop.svg");
   background-size: cover;
   padding: 6rem 3rem;
   border-radius: 9px;
@@ -445,6 +445,11 @@ input:checked + .slider:before {
   font-size: 1.8rem;
   letter-spacing: 1px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.next-btn:hover {
+  background-color: var(--color-blue-2);
 }
 
 .back-btn {
@@ -456,4 +461,9 @@ input:checked + .slider:before {
   font-size: 1.8rem;
   letter-spacing: 1px;
   cursor: pointer;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  color: var(--color-blue-1);
 }
