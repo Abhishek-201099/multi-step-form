@@ -116,6 +116,7 @@ body {
   background-image: url("/public/bg-sidebar-desktop.svg");
   background-size: cover;
   padding: 6rem 3rem;
+  border-radius: 9px;
 }
 
 /* STEPS */
