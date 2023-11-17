@@ -283,3 +283,176 @@ body {
 }
 
 /*********************************/
+/*********************************/
+/* PLANS */
+.plans-container {
+  padding: 5rem 6rem 0 6rem;
+}
+
+.plans-heading {
+  font-size: 5.2rem;
+  color: var(--color-blue-1);
+  letter-spacing: 1px;
+  margin-bottom: 2.4rem;
+}
+
+.plans-text {
+  color: var(--color-grey-2);
+  font-size: 1.8rem;
+  margin-bottom: 4rem;
+}
+
+.plans-list {
+  padding: 4rem 0rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plan-item {
+  border: 1px solid var(--color-grey-1);
+  border-radius: 11px;
+  padding: 3rem 2rem;
+  width: 30%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+
+  transition: all 0.3s;
+}
+
+.plan-item.plan-active {
+  border: 1px solid var(--color-blue-1);
+  background-color: var(--color-white-3);
+}
+
+.plan-icon {
+  height: 5rem;
+  align-self: flex-start;
+}
+
+.plan-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.plan-details .plan-type {
+  font-size: 2rem;
+  color: var(--color-blue-1);
+}
+
+.plan-details .plan-price {
+  color: var(--color-grey-2);
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.plan-details .plan-offer {
+  color: var(--color-blue-1);
+  font-size: 1.4rem;
+}
+
+/* PLANS TOGGLE SWITCH */
+.plans-toggle {
+  background-color: var(--color-white-3);
+  padding: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.plans-toggle p {
+  font-size: 1.8rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 6rem;
+  height: 2.8rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsl(213, 96%, 18%);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 2rem;
+  width: 2rem;
+  left: 0.4rem;
+  bottom: 0.4rem;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(2rem);
+  -ms-transform: translateX(2rem);
+  transform: translateX(3rem);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 3.4rem;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.nav-btns {
+  margin-top: 2rem;
+  padding: 2rem 0rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.next-btn {
+  background-color: var(--color-blue-1);
+  color: var(--color-white-1);
+  border: 1px solid var(--color-blue-1);
+  border-radius: 9px;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.back-btn {
+  border: none;
+  color: var(--color-grey-2);
+  background-color: var(--color-white-1);
+  border-radius: 9px;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
