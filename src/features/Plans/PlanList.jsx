@@ -1,13 +1,9 @@
-// import { useState } from "react";
-
 export default function PlanList({
   plans,
   planType,
   selectedPlan,
   setSelectedPlan,
 }) {
-  // const [selectedPlan, setSelectedPlan] = useState(plans.at(0));
-
   return (
     <div className="plans-list">
       {plans.map((plan, index) => {

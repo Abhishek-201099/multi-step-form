@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import PlanList from "../features/Plans/PlanList";
 import PlanToggle from "../features/Plans/PlanToggle";
 import NavBtns from "../ui/NavBtns";
-import { useDispatch } from "react-redux";
-import { updateSelectedPlan } from "../features/Plans/PlanSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getSelectedPlan,
+  updateSelectedPlan,
+} from "../features/Plans/PlanSlice";
 
 const plans = [
   {
@@ -19,7 +22,7 @@ const plans = [
     type: "Advanced",
     monthlyPrice: 12,
     yearly: {
-      price: 90,
+      price: 120,
       monthsFree: 2,
     },
   },
@@ -27,7 +30,7 @@ const plans = [
     type: "Pro",
     monthlyPrice: 15,
     yearly: {
-      price: 90,
+      price: 150,
       monthsFree: 2,
     },
   },
@@ -36,8 +39,26 @@ const plans = [
 export default function Plans() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [planType, setPlanType] = useState("monthly");
-  const [selectedPlan, setSelectedPlan] = useState(plans.at(0));
+  let planData = useSelector(getSelectedPlan) || [];
+  let selectedPlanType;
+  if (Object.keys(planData).length !== 0) {
+    if (planData.type === "monthly") {
+      selectedPlanType = "monthly";
+      planData = plans.filter(
+        (plan) => plan.monthlyPrice === planData.planPrice
+      );
+    }
+    if (planData.type === "yearly") {
+      selectedPlanType = "yearly";
+      planData = plans.filter(
+        (plan) => plan.yearly.price === planData.planPrice
+      );
+    }
+  }
+  const [planType, setPlanType] = useState(selectedPlanType || "monthly");
+  const [selectedPlan, setSelectedPlan] = useState(
+    planData.length ? planData[0] : plans.at(0)
+  );
 
   function handlePlanData() {
     let planData;
