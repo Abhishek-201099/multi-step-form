@@ -1,10 +1,12 @@
-export default function PlanToggle({ setPlanType }) {
+export default function PlanToggle({ setPlanType, planType }) {
   return (
     <div className="plans-toggle">
       <p>Monthly</p>
       <label className="switch">
         <input
           type="checkbox"
+          checked={planType === "yearly" ? true : false}
+          // checked={true}
           onChange={() =>
             setPlanType((planType) =>
               planType === "monthly" ? "yearly" : "monthly"

@@ -1,13 +1,10 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PlanList from "../features/Plans/PlanList";
 import PlanToggle from "../features/Plans/PlanToggle";
 import NavBtns from "../ui/NavBtns";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getSelectedPlan,
-  updateSelectedPlan,
-} from "../features/Plans/PlanSlice";
+import { useDispatch } from "react-redux";
+import { updateSelectedPlan } from "../features/Plans/PlanSlice";
+import { usePlans } from "../features/Plans/usePlans";
 
 const plans = [
   {
@@ -39,34 +36,16 @@ const plans = [
 export default function Plans() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let planData = useSelector(getSelectedPlan) || [];
-  let selectedPlanType;
-  if (Object.keys(planData).length !== 0) {
-    if (planData.type === "monthly") {
-      selectedPlanType = "monthly";
-      planData = plans.filter(
-        (plan) => plan.monthlyPrice === planData.planPrice
-      );
-    }
-    if (planData.type === "yearly") {
-      selectedPlanType = "yearly";
-      planData = plans.filter(
-        (plan) => plan.yearly.price === planData.planPrice
-      );
-    }
-  }
-  const [planType, setPlanType] = useState(selectedPlanType || "monthly");
-  const [selectedPlan, setSelectedPlan] = useState(
-    planData.length ? planData[0] : plans.at(0)
-  );
+  const { planType, selectedPlan, setPlanType, setSelectedPlan } =
+    usePlans(plans);
 
   function handlePlanData() {
-    let planData;
-    if (planType === "monthly")
-      planData = { type: planType, planPrice: selectedPlan.monthlyPrice };
-
-    if (planType === "yearly")
-      planData = { type: planType, planPrice: selectedPlan.yearly.price };
+    const planData =
+      planType === "monthly"
+        ? { type: planType, planPrice: selectedPlan.monthlyPrice }
+        : planType === "yearly"
+        ? { type: planType, planPrice: selectedPlan.yearly.price }
+        : null;
 
     dispatch(updateSelectedPlan(planData));
 
@@ -87,7 +66,7 @@ export default function Plans() {
         setSelectedPlan={setSelectedPlan}
       />
 
-      <PlanToggle setPlanType={setPlanType} />
+      <PlanToggle setPlanType={setPlanType} planType={planType} />
 
       <NavBtns
         handleBack={() => navigate("/userinfo")}
