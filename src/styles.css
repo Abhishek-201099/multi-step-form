@@ -467,3 +467,80 @@ input:checked + .slider:before {
 .back-btn:hover {
   color: var(--color-blue-1);
 }
+/*********************************/
+
+/*********************************/
+/*********************************/
+/* ADDONS */
+.addons-container {
+  padding: 5rem 6rem 0 6rem;
+}
+
+.addons-heading {
+  font-size: 5.2rem;
+  color: var(--color-blue-1);
+  letter-spacing: 1px;
+  margin-bottom: 2.4rem;
+}
+
+.addons-text {
+  color: var(--color-grey-2);
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+}
+
+.addons-list {
+  padding: 4rem 0rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+}
+
+.addon-item {
+  width: 85%;
+  padding: 2rem;
+  border: 1px solid var(--color-blue-1);
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.addon-item.addon-active {
+  background-color: #eff2ff;
+}
+
+.addon-item input {
+  height: 2rem;
+  width: 2rem;
+}
+
+.addon-item input:checked {
+  accent-color: var(--color-blue-2);
+}
+
+.addon-item .addon-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.addon-details .addon-type {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-blue-1);
+}
+
+.addon-details .addon-description {
+  color: var(--color-grey-2);
+}
+
+.addon-item .addon-price {
+  margin-left: auto;
+  color: var(--color-blue-2);
+  font-weight: 500;
+  letter-spacing: 0.6px;
+}
