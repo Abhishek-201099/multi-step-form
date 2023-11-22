@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import PlanList from "../features/Plans/PlanList";
-import PlanToggle from "../features/Plans/PlanToggle";
+import PlanList from "../features/plans/PlanList";
+import PlanToggle from "../features/plans/PlanToggle";
 import NavBtns from "../ui/NavBtns";
 import { useDispatch } from "react-redux";
-import { updateSelectedPlan } from "../features/Plans/PlanSlice";
-import { usePlans } from "../features/Plans/usePlans";
+import { updateSelectedPlan } from "../features/plans/PlanSlice";
+import { usePlans } from "../features/plans/usePlans";
 
 const plans = [
   {

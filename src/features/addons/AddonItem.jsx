@@ -1,8 +1,13 @@
+import { useSelector } from "react-redux";
+import { getSelectedPlan } from "../plans/PlanSlice";
+
 export default function AddonItem({
   addon,
   selectedAddons,
   setSelectedAddons,
 }) {
+  const { type: selectedPlanType } = useSelector(getSelectedPlan);
+
   const isChecked = selectedAddons.find(
     (selectedAddon) => selectedAddon.type === addon.type
   )
@@ -22,15 +27,7 @@ export default function AddonItem({
   }
 
   return (
-    <div
-      className={`addon-item ${
-        selectedAddons.find(
-          (selectedAddon) => selectedAddon.type === addon.type
-        )
-          ? "addon-active"
-          : ""
-      }`}
-    >
+    <div className={`addon-item ${isChecked ? "addon-active" : ""}`}>
       <input
         type="checkbox"
         checked={isChecked}
@@ -42,8 +39,14 @@ export default function AddonItem({
         <p className="addon-type">{addon.type}</p>
         <p className="addon-description">{addon.description}</p>
       </div>
-      {/*Reminder : Handle plan type wise price rendering */}
-      <p className="addon-price">+${addon.price.monthlyPrice}/mo</p>
+      <p className="addon-price">
+        +$
+        {selectedPlanType === "monthly"
+          ? `${addon.price.monthlyPrice}/mo`
+          : selectedPlanType === "yearly"
+          ? `${addon.price.yearlyPrice}/yr`
+          : ""}
+      </p>
     </div>
   );
 }

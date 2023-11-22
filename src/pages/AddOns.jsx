@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import NavBtns from "../ui/NavBtns";
 import AddonsList from "../features/addons/AddonsList";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSelectedPlan } from "../features/plans/PlanSlice";
+import { updateAddons } from "../features/addons/AddonSlice";
+import useAddons from "../features/addons/useAddons";
 
 const addons = [
   {
@@ -32,10 +35,20 @@ const addons = [
 
 export default function AddOns() {
   const navigate = useNavigate();
-  const [selectedAddons, setSelectedAddons] = useState([addons.at(0)]);
+  const dispatch = useDispatch();
+  const planData = useSelector(getSelectedPlan);
+
+  const { selectedAddons, setSelectedAddons } = useAddons(addons);
 
   function handleAddonData() {
-    // DO redux operation to save addons data.
+    const modifiedAddons = selectedAddons.map((selectedAddon) => {
+      return planData.type === "monthly"
+        ? { ...selectedAddon, price: selectedAddon.price.monthlyPrice }
+        : planData.type === "yearly"
+        ? { ...selectedAddon, price: selectedAddon.price.yearlyPrice }
+        : null;
+    });
+    dispatch(updateAddons(modifiedAddons));
     navigate("/summary");
   }
 
