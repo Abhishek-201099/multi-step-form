@@ -1,12 +1,14 @@
 import NavBtns from "../ui/NavBtns";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSelectedPlan } from "../features/plans/PlanSlice";
 import { getAddons } from "../features/addons/AddonSlice";
 import SummaryTable from "../features/summary/SummaryTable";
 import { useNavigate } from "react-router-dom";
+import { updateSummary } from "../features/summary/SummarySlice";
 
 export default function Summary() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const planData = useSelector(getSelectedPlan);
   const addonData = useSelector(getAddons);
 
@@ -15,6 +17,11 @@ export default function Summary() {
 
   const planTotal =
     planData.planPrice + addonData.reduce((acc, addon) => acc + addon.price, 0);
+
+  function handleConfirm() {
+    dispatch(updateSummary({ planData, addonData }));
+    navigate("/confirm");
+  }
 
   return (
     <div className="summary-container">
@@ -33,7 +40,7 @@ export default function Summary() {
       <NavBtns
         nextBtnName="Confirm"
         handleBack={() => navigate("/addons")}
-        // handleNext={() => navigate('/')}
+        handleNext={() => handleConfirm()}
       />
     </div>
   );

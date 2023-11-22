@@ -10,6 +10,7 @@ import Plans from "./pages/Plans";
 import AddOns from "./pages/AddOns";
 import Summary from "./pages/Summary";
 import PageNotFound from "./pages/PageNotFound";
+import Confirm from "./pages/Confirm";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/summary",
         element: <Summary />,
+      },
+      {
+        path: "/confirm",
+        element: <Confirm />,
       },
     ],
   },
