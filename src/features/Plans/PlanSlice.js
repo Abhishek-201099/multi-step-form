@@ -9,6 +9,7 @@ const planSlice = createSlice({
   initialState: initialPlanState,
   reducers: {
     updateSelectedPlan(state, action) {
+      state.selectedPlan.planName = action.payload.planName;
       state.selectedPlan.type = action.payload.type;
       state.selectedPlan.planPrice = action.payload.planPrice;
     },

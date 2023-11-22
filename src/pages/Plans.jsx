@@ -42,9 +42,17 @@ export default function Plans() {
   function handlePlanData() {
     const planData =
       planType === "monthly"
-        ? { type: planType, planPrice: selectedPlan.monthlyPrice }
+        ? {
+            planName: selectedPlan.type,
+            type: planType,
+            planPrice: selectedPlan.monthlyPrice,
+          }
         : planType === "yearly"
-        ? { type: planType, planPrice: selectedPlan.yearly.price }
+        ? {
+            planName: selectedPlan.type,
+            type: planType,
+            planPrice: selectedPlan.yearly.price,
+          }
         : null;
 
     dispatch(updateSelectedPlan(planData));
